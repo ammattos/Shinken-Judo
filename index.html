@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shinken Judô</title>
+<style>
+/* Importação de novas tipografias modernas e limpas (sem itálico) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  /* Paleta de cores com toque mais clássico/vintage */
+  --bg: #f4f0e6; 
+  --card: #ffffff;
+  --ink: #2c2a29;
+  --mut: #706e6b;
+  --line: #d6d2c4;
+  --acc: #a31f18; /* Vermelho Shinken clássico */
+  --on: #ffffff;
+  --bad: #8b0000;
+  --bt: #696969;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 84px;
+  /* Filtro Vintage aplicado a toda a identidade visual */
+  filter: sepia(0.2) contrast(0.95) saturate(0.9);
+}
+
+h1, h2, .serif {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1 { font-size: 26px; line-height: 1.2; margin: 0 0 10px; }
+h2 { font-size: 18px; margin: 20px 0 10px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+.sub { color: var(--mut); font-size: 14px; margin: 0 0 12px; line-height: 1.4; }
+
+main { max-width: 560px; margin: 0 auto; padding: 16px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+button { font: inherit; cursor: pointer; }
+.btn { background: var(--acc); color: var(--on); border: 0; border-radius: 6px; padding: 12px 16px; font-weight: 600; width: 100%; margin-top: 8px; }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; font-weight: 600; width: 100%; margin-top: 8px; }
+.btn-danger { background: var(--bad); color: var(--on); border: 0; border-radius: 6px; padding: 12px 16px; font-weight: 600; width: 100%; margin-top: 8px; }
+
+input, select, textarea {
+  font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 10px; width: 100%; margin-bottom: 10px; box-sizing: border-box;
+}
+textarea { min-height: 80px; resize: vertical; }
+
+nav { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: var(--card); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 100; }
+nav button { flex: 1; border: 0; background: none; padding: 12px 4px; font-size: 12px; color: var(--mut); font-weight: 600; transition: color 0.2s;}
+nav button.on { color: var(--acc); border-top: 2px solid var(--acc); }
+
+/* Modais e Popups */
+.ov { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 200; padding: 16px; }
+.fc { background: var(--card); border-radius: 8px; padding: 20px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto; }
+.fc-close { background: transparent; border: none; font-size: 20px; font-weight: bold; float: right; color: var(--mut); margin-top: -10px; }
+
+/* Estrutura Login */
+#login-screen { display: flex; flex-direction: column; justify-content: center; min-height: 80vh; }
+.logo-container { text-align: center; margin-bottom: 24px; }
+.logo-container h1 { color: var(--acc); font-size: 32px; margin-bottom: 4px; }
+
+/* Abas e Listas */
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
+.cal .h { text-align: center; font-size: 12px; color: var(--mut); font-weight: 600; }
+.d { aspect-ratio: 1; border: 1px solid var(--line); border-radius: 6px; background: none; font-size: 14px; transition: 0.2s; }
+.d.T { background: var(--acc); color: var(--on); border-color: var(--acc); font-weight: 700; }
+.rm { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: center;}
+.rm:last-child { border-bottom: none; }
+.rm.me { font-weight: bold; color: var(--acc); }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 10px; }
+
+.header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 2px solid var(--acc); padding-bottom: 8px; }
+.progress-bg { background: var(--line); height: 8px; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+.progress-bar { background: var(--acc); height: 100%; transition: width 0.3s; }
+
+/* Fichas e Checkboxes */
+.ck { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 12px 0; }
+.bx { flex: none; width: 20px; height: 20px; border: 2px solid var(--mut); border-radius: 4px; transition: 0.2s; }
+.ck.on .bx { background: var(--acc); border-color: var(--acc); position: relative; }
+.ck.on .bx::after { content: '✓'; color: white; position: absolute; top: -2px; left: 3px; font-size: 14px; }
+
+.gokyo-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.gokyo-item button.lk { background: none; border: none; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; font-size: 15px; padding: 0; text-align: left; }
+.chip { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg); }
+.chip.s1 { border-color: #d97706; color: #d97706; } /* Estudando */
+.chip.s2 { background: var(--acc); color: var(--on); border-color: var(--acc); } /* Dominei */
+
+/* Relatórios Sensei */
+.sensei-user-card { border-left: 4px solid var(--acc); padding-left: 12px; margin-bottom: 16px; }
+.stat-box { background: var(--bg); padding: 10px; border-radius: 6px; text-align: center; border: 1px solid var(--line); }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<nav id="nav" style="display:none;"></nav>
+<div id="modal-root"></div>
+
+<script>
+// --- INÍCIO DA LÓGICA JAVASCRIPT ---
+  const APP_KEY = 'shinken_judo_app_data';
+let appData = { currentUserId: null, users: {} };
+
+// Carregar dados locais
+try {
+  const r = localStorage.getItem(APP_KEY);
+  if (r) appData = JSON.parse(r);
+} catch (e) {}
+
+const save = () => {
+  try { localStorage.setItem(APP_KEY, JSON.stringify(appData)); } catch (e) {}
+};
+
+const defaultUser = () => ({
+  name: '', age: '', cpf: '', email: '',
+  lv: 0, since: '', birth: '',
+  days: {}, req: {}, tech: {}, cards: {}, rounds: [], notes: []
+});
+
+const currentUser = () => appData.users[appData.currentUserId];
+
+// --- DADOS DO JUDÔ ---
+const B = [
+  ['Branca/Cinza','11º kyû',4,3,['#e4e4de','#8b9099'], ['Ritsu rei e Zarei', 'Ukemi para trás', '1 técnica do 1º Kyô']],
+  ['Cinza','10º kyû',5,3,['#8b9099'], ['Zempô kaiten ukemi', '2 técnicas do 1º Kyô', 'Contar até 10 em japonês']],
+  ['Cinza/Azul','9º kyû',6,6,['#8b9099','#2a62b8'], ['Kumikata', '3 técnicas do 1º Kyô', 'Vocabulário básico']],
+  ['Azul','8º kyû',7,6,['#2a62b8'], ['Kuzushi', 'Renraku waza', 'Amarrar a faixa']],
+  ['Azul/Amarela','7º kyû',8,6,['#2a62b8','#e2b422'], ['Ordem das faixas', 'Kaeshi waza']],
+  ['Amarela','6º kyû',9,6,['#e2b422'], ['3 sequências de golpes', 'Morte de Kano']],
+  ['Amarela/Laranja','5º kyû',10,12,['#e2b422','#e07a1f'], ['Todas projeções 1º Kyô', 'Significado de Judô']],
+  ['Laranja','4º kyû',11,12,['#e07a1f'], ['Todas projeções 2º Kyô', 'Fases da técnica']],
+  ['Verde','3º kyû',12,12,['#2f8f4a'], ['Todas projeções 3º Kyô', 'Te waza do Nage no Kata']],
+  ['Roxa','2º kyû',13,12,['#6a3fa0'], ['Todas projeções 4º Kyô', 'Koshi waza do Nage no Kata']],
+  ['Marrom','1º kyû',14,12,['#6b4226'], ['Todas projeções 5º Kyô', 'Ashi waza do Nage no Kata', 'Noções de arbitragem']],
+  ['Preta','1º dan',16,24,['#161616'], ['Nage no Kata completo', 'Prova teórica CBJ']]
+];
+
+const G = [
+  ['1º Kyô (A partir da Cinza)', ['De-ashi-barai','Hiza-guruma','Sasae-tsurikomi-ashi','Uki-goshi','Osoto-gari','O-goshi','Ouchi-gari','Seoi-nage']],
+  ['2º Kyô (A partir da Laranja)', ['Kosoto-gari','Kouchi-gari','Koshi-guruma','Tsurikomi-goshi','Okuri-ashi-barai','Tai-otoshi','Harai-goshi','Uchi-mata']],
+  ['3º Kyô (A partir da Verde)', ['Kosoto-gake','Tsuri-goshi','Yoko-otoshi','Ashi-guruma','Hane-goshi','Harai-tsurikomi-ashi','Tomoe-nage','Kata-guruma']],
+  ['4º Kyô (A partir da Roxa)', ['Sumi-gaeshi','Tani-otoshi','Hane-makikomi','Sukui-nage','Utsuri-goshi','O-guruma','Soto-makikomi','Uki-otoshi']],
+  ['5º Kyô (A partir da Marrom)', ['Osoto-guruma','Uki-waza','Yoko-wakare','Yoko-guruma','Ushiro-goshi','Ura-nage','Sumi-otoshi','Yoko-gake']]
+];
+
+const KATAS = ["Nage no Kata", "Katame no Kata", "Kime no Kata", "Ju no Kata", "Kodokan Goshin Jutsu", "Koshiki no Kata", "Itsutsu no Kata"];
+
+let tab = 'login';
+let view = new Date();
+view.setDate(1);
+
+// --- NAVEGAÇÃO E RENDERIZAÇÃO GERAL ---
+function render() {
+  const app = document.getElementById('app');
+  const nav = document.getElementById('nav');
+  
+  if (appData.currentUserId === null) {
+    nav.style.display = 'none';
+    app.innerHTML = renderLogin();
+    return;
+  }
+  
+  if (appData.currentUserId === 'sensei.shinken') {
+    nav.style.display = 'none';
+    app.innerHTML = renderSenseiDashboard();
+    return;
+  }
+
+  nav.style.display = 'flex';
+  nav.innerHTML = `
+    <button class="${tab==='michi'?'on':''}" onclick="go('michi')">Michi</button>
+    <button class="${tab==='keiko'?'on':''}" onclick="go('keiko')">Keiko</button>
+    <button class="${tab==='waza'?'on':''}" onclick="go('waza')">Waza</button>
+    <button class="${tab==='gaku'?'on':''}" onclick="go('gaku')">Gaku</button>
+    <button class="${tab==='kiroku'?'on':''}" onclick="go('kiroku')">Kiroku</button>
+  `;
+
+  const views = { michi: renderMichi, keiko: renderKeiko, waza: renderWaza, gaku: renderGaku, kiroku: renderKiroku };
+  app.innerHTML = views[tab] ? views[tab]() : renderMichi();
+}
+
+function go(t) { tab = t; render(); window.scrollTo(0,0); }
+
+// --- SISTEMA DE LOGIN E CONTAS ---
+function renderLogin() {
+  return `
+    <div id="login-screen">
+      <div class="logo-container">
+        <h1>SHINKEN</h1>
+        <p class="sub">O Caminho da Suavidade</p>
+      </div>
+      <div class="card">
+        <h2>Acesse a sua conta</h2>
+        <input type="text" id="login-cpf" placeholder="CPF ou Usuário">
+        <input type="password" id="login-pwd" placeholder="Senha (para Sensei)">
+        <button class="btn" onclick="doLogin()">Entrar</button>
+      </div>
+      <div class="card">
+        <h2>Crie uma nova conta</h2>
+        <input type="text" id="reg-name" placeholder="Nome Completo">
+        <input type="number" id="reg-age" placeholder="Idade">
+        <input type="text" id="reg-cpf" placeholder="CPF">
+        <input type="email" id="reg-email" placeholder="E-mail">
+        <button class="btn-outline" onclick="doRegister()">Cadastrar e Acessar</button>
+      </div>
+    </div>
+  `;
+}
+
+function doLogin() {
+  const user = document.getElementById('login-cpf').value.trim();
+  const pwd = document.getElementById('login-pwd').value.trim();
+  
+  if (user === 'sensei.shinken' && pwd === 'shinken.kano') {
+    appData.currentUserId = 'sensei.shinken';
+    tab = 'sensei';
+    save(); render(); return;
+  }
+  
+  if (appData.users[user]) {
+    appData.currentUserId = user;
+    tab = 'michi';
+    save(); render();
+  } else {
+    alert('Conta não encontrada. Verifique o CPF ou crie uma nova conta.');
+  }
+}
+
+function doRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const age = document.getElementById('reg-age').value.trim();
+  const cpf = document.getElementById('reg-cpf').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  
+  if (!name || !cpf) return alert('Nome e CPF são obrigatórios.');
+  if (appData.users[cpf]) return alert('CPF já cadastrado.');
+  
+  appData.users[cpf] = defaultUser();
+  appData.users[cpf].name = name;
+  appData.users[cpf].age = age;
+  appData.users[cpf].cpf = cpf;
+  appData.users[cpf].email = email;
+  
+  appData.currentUserId = cpf;
+  tab = 'michi';
+  save(); render();
+}
+
+function logout() {
+  appData.currentUserId = null;
+  save(); render();
+}
+
+function resetProgress() {
+  if(confirm('Tem a certeza que deseja APAGAR TODO O PROGRESSO? Esta ação é irreversível.')) {
+    const user = currentUser();
+    const baseInfo = { name: user.name, age: user.age, cpf: user.cpf, email: user.email };
+    appData.users[appData.currentUserId] = { ...defaultUser(), ...baseInfo };
+    save(); render();
+  }
+}
+// --- ABA MICHI (O CAMINHO) ---
+function renderMichi() {
+  const user = currentUser();
+  const n = B.length;
+  const currentLv = user.lv;
+  const t = B[Math.min(currentLv, n - 1)];
+  const isMax = currentLv >= n;
+  
+  const curName = currentLv ? B[Math.min(currentLv, n) - 1][0] + ' (' + B[Math.min(currentLv, n) - 1][1] + ')' : 'Branca (Iniciante)';
+  const reqs = isMax ? [] : t[5];
+  const doneCount = reqs.filter((_, i) => user.req[currentLv + '-' + i]).length;
+  const pc = reqs.length ? Math.round(100 * doneCount / reqs.length) : 100;
+
+  let h = `
+    <div class="header-bar">
+      <div>
+        <h1 style="margin:0; font-size: 22px;">Olá, ${user.name}</h1>
+        <p class="sub" style="margin:0;">Faixa Atual: <b>${curName}</b></p>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Judo_logo.svg/1024px-Judo_logo.svg.png" width="45" height="45" alt="Logo" style="mix-blend-mode: multiply;">
+    </div>
+  `;
+
+  if (isMax) {
+    h += `<div class="card"><h2>Parabéns!</h2><p>Você atingiu a graduação máxima registrada neste sistema.</p></div>`;
+  } else {
+    h += `
+      <div class="card">
+        <h2>Próxima Faixa: ${t[0]}</h2>
+        <p class="sub">${t[1]} · Carência: ${t[3]} meses</p>
+        <div class="progress-bg"><div class="progress-bar" style="width:${pc}%"></div></div>
+        <p class="sub" style="text-align:right;">${doneCount} de ${reqs.length} requisitos (${pc}%)</p>
+      </div>
+      <div class="card">
+        <h2>Requisitos para Exame</h2>
+        <div>${reqs.map((r, i) => `
+          <button class="ck ${user.req[currentLv + '-' + i] ? 'on' : ''}" onclick="toggleReq(${currentLv},${i})">
+            <span class="bx"></span><span>${r}</span>
+          </button>`).join('')}
+        </div>
+        <button class="btn" onclick="advanceRank()" ${pc < 100 ? 'disabled style="opacity:0.5"' : ''}>Solicitar Exame / Avançar Faixa</button>
+      </div>
+    `;
+  }
+
+  h += `
+    <div class="card">
+      <h2>Mapa de Evolução</h2>
+      <div style="margin-top: 10px;">
+        <div class="rm ${currentLv === 0 ? 'me' : ''}"><span class="dot" style="background:#e4e4de"></span>Branca</div>
+        ${B.map((b, i) => `<div class="rm ${i === currentLv ? 'me' : ''}" style="${i < currentLv ? 'color:var(--mut)' : ''}"><span class="dot" style="background:linear-gradient(90deg,${b[4][0]},${b[4][b[4].length-1]})"></span><span>${b[0]}</span><span>${b[1]}</span></div>`).join('')}
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-outline" onclick="logout()">Sair da Conta</button>
+      <button class="btn-danger" onclick="resetProgress()">Voltar ao Início</button>
+    </div>
+  `;
+  return h;
+}
+
+function toggleReq(lv, i) {
+  const user = currentUser();
+  const k = lv + '-' + i;
+  user.req[k] = !user.req[k];
+  save(); render();
+}
+
+function advanceRank() {
+  const user = currentUser();
+  if(confirm('Confirmar avanço de faixa?')) {
+    user.lv++;
+    user.since = new Date().toISOString().split('T')[0];
+    save(); render();
+  }
+}
+
+// --- ABA KEIKO (TREINOS) ---
+function renderKeiko() {
+  const user = currentUser();
+  const y = view.getFullYear(), mo = view.getMonth();
+  const f = new Date(y, mo, 1).getDay(), n = new Date(y, mo + 1, 0).getDate();
+  const td = new Date().toISOString().split('T')[0];
+  
+  let c = ['D','S','T','Q','Q','S','S'].map(x => `<div class="h">${x}</div>`).join('') + '<span></span>'.repeat(f);
+  for (let d = 1; d <= n; d++) {
+    const k = `${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    c += `<button class="d ${user.days[k] || ''} ${k === td ? 'now' : ''}" onclick="toggleDay('${k}')">${d}</button>`;
+  }
+
+  return `
+    <div class="header-bar">
+      <h1>Keiko (Treinos)</h1>
+      <button class="btn-outline" style="width:auto; padding: 6px 12px; margin:0;" onclick="showHorarios()">⏰ Horários</button>
+    </div>
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+        <button class="btn-outline" style="width:auto; margin:0; padding:4px 8px;" onclick="mvMonth(-1)">‹</button>
+        <b style="text-transform:capitalize">${view.toLocaleDateString('pt-BR', {month:'long', year:'numeric'})}</b>
+        <button class="btn-outline" style="width:auto; margin:0; padding:4px 8px;" onclick="mvMonth(1)">›</button>
+      </div>
+      <div class="cal">${c}</div>
+    </div>
+    <div class="card">
+      <h2>Diário de Bordo</h2>
+      <textarea id="keiko-note" placeholder="O que aprendeu hoje?"></textarea>
+      <button class="btn" onclick="saveNote()">Registrar Treino</button>
+      <div style="margin-top: 16px;">
+        ${[...user.notes].reverse().slice(0, 5).map(n => `
+          <div style="border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:8px;">
+            <small style="color:var(--acc); font-weight:bold;">${n.d}</small><br>${n.x}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function showHorarios() {
+  openModal(`
+    <h2>Disponibilidade de Treinos</h2>
+    <p><b>👨🏾👩🏼 ADOLESCENTES E ADULTOS (a partir de 13 anos)</b></p>
+    <ul style="padding-left: 20px; color: var(--mut); line-height: 1.6;">
+      <li><b>Noite:</b> Segunda e Quarta (20h - 21h) | Sexta (19h30 - 20h30)</li>
+      <li><b>Tarde:</b> Sábado (14h - 16h) | Domingo (15h - 16h30)</li>
+      <li><b>Manhã:</b> Terça e Quinta (10h - 11h)</li>
+    </ul>
+  `);
+}
+
+function toggleDay(k) {
+  const user = currentUser();
+  const o = {'': 'T', 'T': 'F', 'F': ''};
+  user.days[k] = o[user.days[k] || ''];
+  if (!user.days[k]) delete user.days[k];
+  save(); render();
+}
+
+function mvMonth(d) { view = new Date(view.getFullYear(), view.getMonth() + d, 1); render(); }
+function saveNote() {
+  const user = currentUser();
+  const text = document.getElementById('keiko-note').value.trim();
+  if(text) {
+    user.notes.push({ d: new Date().toLocaleDateString('pt-BR'), x: text });
+    save(); render();
+  }
+}
+
+// --- ABA WAZA (TÉCNICAS E SIMULADOS) ---
+function renderWaza() {
+  const user = currentUser();
+  let h = `
+    <div class="header-bar">
+      <h1>Waza (Técnicas)</h1>
+    </div>
+    <div class="card" style="background: var(--ink); color: var(--on); border:none;">
+      <h2 style="color:var(--on); border-bottom-color:#444;">Preparação para Exame</h2>
+      <p style="font-size:14px; opacity:0.8;">Simulado personalizado focado nos requisitos da sua próxima faixa.</p>
+      <button class="btn" style="background: var(--on); color: var(--ink);" onclick="startSimulado()">Fazer Simulado Completo</button>
+    </div>
+    
+    <h2>O Gokyo (40 Técnicas)</h2>
+    <p class="sub">Toque em uma técnica para ver a ficha detalhada (Pegada, Passo e Execução).</p>
+  `;
+
+  G.forEach(g => {
+    h += `
+      <div class="card">
+        <h3 style="margin-top:0; color:var(--acc); font-family:'Playfair Display', serif;">${g[0]}</h3>
+        ${g[1].map(n => `
+          <div class="gokyo-item">
+            <button class="lk" onclick="openFicha('${n}')">${n}</button>
+            <button class="chip ${user.tech[n] === 2 ? 's2' : user.tech[n] === 1 ? 's1' : ''}" onclick="toggleTech('${n}')">
+              ${user.tech[n] === 2 ? 'Dominado' : user.tech[n] === 1 ? 'Treinando' : 'Pendente'}
+            </button>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  });
+
+  h += `
+    <h2>Katas (Formas)</h2>
+    <div class="card">
+      <ul style="padding-left: 20px; line-height: 1.8; color: var(--mut);">
+        ${KATAS.map(k => `<li>${k}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+  return h;
+}
+
+function toggleTech(n) {
+  const user = currentUser();
+  user.tech[n] = ((user.tech[n] || 0) + 1) % 3;
+  save(); render();
+}
+
+function openFicha(n) {
+  openModal(`
+    <h2 style="color:var(--acc); font-size:24px;">${n}</h2>
+    <p class="sub">Ficha de técnica focada em biomecânica e contato real.</p>
+    <div style="background:#e5e5e5; height:150px; border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom: 16px; border: 1px solid var(--line);">
+      <span style="color:var(--mut); font-weight:bold;">[ Ilustração Técnica do Kumikata e Passada ]</span>
+    </div>
+    <ol style="padding-left: 16px; line-height: 1.6;">
+      <li><b>Kuzushi (Desequilíbrio):</b> Quebre a postura do Uke na direção da projeção.</li>
+      <li><b>Tsukuri (Posicionamento):</b> Ajuste sua base e mantenha o contato físico firme (Kumikata).</li>
+      <li><b>Kake (Execução):</b> Projete usando a rotação do corpo, não apenas a força dos braços.</li>
+    </ol>
+  `);
+}
+
+function startSimulado() {
+  openModal(`
+    <h2 style="text-align:center; color:var(--acc);">Simulado de Graduação</h2>
+    <p style="text-align:center;">Preparando ambiente com 15 questões baseadas no seu nível...</p>
+    <button class="btn" onclick="closeModal()">Finalizar Simulado (Demo)</button>
+  `);
+}
+
+// --- ABA GAKU (CONHECIMENTO E NÚMEROS) ---
+function renderGaku() {
+  return `
+    <div class="header-bar">
+      <h1>Gaku (Estudos)</h1>
+    </div>
+    <div class="card">
+      <h2>O Pilar do Conhecimento no Judô</h2>
+      <p style="line-height: 1.6; color: var(--mut);">A evolução de um judoca não se mede apenas pelos golpes que aplica, mas pela sua compreensão da filosofia, do respeito e da cultura que fundaram a arte. O Judô é o "caminho da suavidade", onde a mente guia o corpo.</p>
+    </div>
+    <div class="card">
+      <h2>Contagem em Japonês</h2>
+      <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+        <div style="text-align:left;">
+          <b>1</b> Ichi<br><b>2</b> Ni<br><b>3</b> San<br><b>4</b> Shi / Yon<br><b>5</b> Go<br>
+          <b>6</b> Roku<br><b>7</b> Shichi / Nana<br><b>8</b> Hachi<br><b>9</b> Kyu<br><b>10</b> Ju
+        </div>
+        <div style="text-align:left;">
+          <b>11</b> Ju-ichi<br><b>20</b> Ni-ju<br><b>30</b> San-ju<br><b>40</b> Yon-ju<br><b>50</b> Go-ju<br>
+          <b>60</b> Roku-ju<br><b>70</b> Nana-ju<br><b>80</b> Hachi-ju<br><b>90</b> Kyu-ju<br><b>100</b> Hyaku
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// --- ABA KIROKU (RELATÓRIOS) ---
+function renderKiroku() {
+  const user = currentUser();
+  const totalDays = Object.keys(user.days).filter(k => user.days[k] === 'T').length;
+  const techMastered = Object.values(user.tech).filter(v => v === 2).length;
+
+  return `
+    <div class="header-bar">
+      <h1>Kiroku (Desempenho)</h1>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--ink);">
+      <h2 style="border:none;">Métricas de Evolução</h2>
+      <div class="stat-grid">
+        <div class="stat-box"><b style="font-size:24px; color:var(--acc);">${totalDays}</b><br><small>Treinos Totais</small></div>
+        <div class="stat-box"><b style="font-size:24px; color:var(--acc);">${techMastered}</b><br><small>Técnicas Dominadas</small></div>
+        <div class="stat-box"><b style="font-size:24px; color:var(--acc);">${user.notes.length}</b><br><small>Anotações Feitas</small></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Avaliação Contínua</h2>
+      <p class="sub">Seu progresso está sendo monitorado para a próxima avaliação de faixa. Continue mantendo a frequência e atualizando as fichas do Gokyo.</p>
+    </div>
+  `;
+}
+
+// --- DASHBOARD DO SENSEI ---
+function renderSenseiDashboard() {
+  const users = Object.keys(appData.users).map(k => appData.users[k]);
+  
+  return `
+    <div style="padding: 16px;">
+      <div class="header-bar">
+        <h1>Painel do Sensei</h1>
+        <button class="btn-outline" style="width:auto; margin:0; padding:6px 12px;" onclick="logout()">Sair</button>
+      </div>
+      <p class="sub">Visão geral de todos os alunos registados na aplicação.</p>
+      
+      ${users.length === 0 ? '<p>Nenhum aluno registado ainda.</p>' : users.map(u => {
+        const treinos = Object.values(u.days).filter(v => v==='T').length;
+        return `
+          <div class="card sensei-user-card">
+            <h3 style="margin:0 0 5px 0;">${u.name} <span style="font-weight:normal; font-size:14px; color:var(--mut);">(${u.age} anos)</span></h3>
+            <p style="margin:0; font-size:14px;"><b>Faixa Nível:</b> ${u.lv} \vert{} <b>Treinos:</b>${treinos}</p>
+            <p style="margin:4px 0 0; font-size:12px; color:var(--mut);">CPF: ${u.cpf} \vert{} Email:${u.email}</p>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+// --- SISTEMA DE MODAL ---
+function openModal(content) {
+  const root = document.getElementById('modal-root');
+  root.innerHTML = `
+    <div class="ov" onclick="if(event.target===this) closeModal()">
+      <div class="fc">
+        <button class="fc-close" onclick="closeModal()">✕</button>
+        ${content}
+      </div>
+    </div>
+  `;
+}
+
+function closeModal() {
+  document.getElementById('modal-root').innerHTML = '';
+}
+
+// --- INICIALIZAÇÃO ---
+render();
+</script>
+</body>
+</html>

@@ -238,7 +238,65 @@ input,select,textarea{background:#fff;border:1px solid var(--line);border-radius
 .ff .fq{font:300 24px/1.3 var(--f-d);margin:auto 0;text-transform:none}.ff.back .fq{margin:14px 0}.fst{align-self:flex-start;border:1px solid var(--line);border-radius:999px;padding:3px 12px;font:500 10.5px var(--f-l);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}.fst.on{color:var(--ok);border-color:var(--ok)}
 .fcb{display:flex;justify-content:space-between;gap:8px;margin-top:14px;background:#fff;border-radius:18px;padding:12px 16px}
 .vg{display:flex;flex-wrap:wrap;gap:8px}.vp{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:500 14px var(--f-b);color:var(--ink);cursor:pointer}.vp.b1{border-color:#c9a894}.vp.b2{border-color:var(--ok);color:var(--ok)}.vp.b3{background:var(--ok);border-color:var(--ok);color:#fff}
-.bchip{margin-right:auto}.hs{margin-left:0!important}#hd{justify-content:flex-start}</style>
+.bchip{margin-right:auto}.hs{margin-left:0!important}#hd{justify-content:flex-start}
+body::before,body::after{display:none!important}
+/* ===== v9: premium e futurista, fundo #FFFFFF ===== */
+/* ... (o resto do CSS v9, v10, v11) ... */
+.sig b{font:300 26px var(--f-d)}
+.tl .ti .tn{border-color:var(--ink)}
+.ov{z-index:70}.pop.wel{max-height:calc(100vh - 36px);padding:18px 22px 0}.pop.wel p{font:400 14.5px/1.62 var(--f-b);margin:8px 0}.pop.wel h1{font-size:23px;margin:4px 0 8px}.pop.wel .sig{margin:14px 0 6px!important}.pop.wel .btn{position:sticky;bottom:0;margin:10px 0 0;box-shadow:0 -14px 14px -4px #fff}.pop.wel{padding-bottom:18px}/* ===== v11: cabeçalho, flashcards, vocabulário, próximo passo ===== */
+#hd{display:flex;align-items:center;gap:14px;padding:12px 20px}
+.bchip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px}.bchip i{width:26px;height:9px;border:1.2px solid var(--ink);border-radius:2px;display:block}.bchip b{font:500 14px var(--f-d)}.bchip small{font:400 12px var(--f-b);color:var(--mut)}
+.hs{margin-left:auto;display:flex;align-items:baseline;gap:6px}.hs b{font:200 26px var(--f-d)}.hs small{font:400 11px var(--f-b);color:var(--mut)}.hs+.av{margin-left:0}
+.nxt{border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin:20px 0 6px}.nxt b{display:block;font:300 22px/1.2 var(--f-d);text-transform:uppercase;letter-spacing:.02em;margin:4px 0 6px}.nxt .sub{margin:0 0 8px}
+/* ... etc ... */
+.bchip{margin-right:auto}.hs{margin-left:0!important}#hd{justify-content:flex-start}
+#hd {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 20px;
+}
+.hprog {
+    flex: 1;
+    position: relative;
+    height: 28px;
+    background: var(--line);
+    border-radius: 99px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+.hprog i {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--b1), var(--b2));
+    border-radius: 99px;
+    transition: width 0.5s ease-in-out;
+    z-index: 1;
+}
+.hprog-txt {
+    position: relative;
+    z-index: 2;
+    font: 600 12px var(--f-l);
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap;
+}
+#hd .av {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--dk);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font: 500 13px var(--f-l);
+    margin-left: auto;
+    flex: none;
+} </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;500&family=Manrope:wght@400;500;600&family=Shippori+Mincho+B1:wght@500;800&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head>
 <body>
 <header id="hd"></header><main id="app"></main>
@@ -1122,18 +1180,16 @@ function kihonView(){return`<p class="sub">Antes dos golpes vêm os fundamentos:
 /* ===== v9: ornamentos japoneses, boas-vindas ===== */
 let WEL=false;
 const IK='stroke="#0e0e10" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"';
-const SUNR=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#c62a22"/>`;
+// Removido SUNR para evitar sobreposição
 const MAST={
- ini:`<path ${IK} d="M196 74L244 24l48 50M226 38l9 6 9-6 9 6 9-6"/>${SUNR(244,30,0)}<circle cx="262" cy="22" r="13" fill="#c62a22"/><path ${IK} d="M20 84C80 84 70 66 140 64S200 62 226 58" stroke-width="2.6" stroke-dasharray="1 8"/><path ${IK} d="M230 60V74M254 60V74M224 60h36M227 66h30"/><path ${IK} d="M10 88h320"/>`,
- cal:`<path d="M126 52a44 44 0 0 1 88 0Z" fill="#c62a22"/><path ${IK} d="M0 52h340M170 52L16 90M170 52L84 90M170 52V90M170 52L256 90M170 52L324 90M0 64h340M0 76h340"/><ellipse cx="146" cy="82" rx="5" ry="9" ${IK}/><ellipse cx="196" cy="70" rx="4.5" ry="8" ${IK}/>`,
- sab:`<path ${IK} d="M70 12h46M72 16h42v52H72zM70 72h46M80 24v38M92 24v38M104 24v38"/><path ${IK} d="M170 76l56-52M222 24l8 6"/>${SUNR(260,34,15)}<path ${IK} d="M262 76c12 0 22 4 22 8s-10 6-22 6-22-2-22-6 10-8 22-8z"/><path ${IK} d="M120 84h140"/>`,
+ ini:`<path ${IK} d="M196 74L244 24l48 50M226 38l9 6 9-6 9 6 9-6"/><path ${IK} d="M20 84C80 84 70 66 140 64S200 62 226 58" stroke-width="2.6" stroke-dasharray="1 8"/><path ${IK} d="M230 60V74M254 60V74M224 60h36M227 66h30"/><path ${IK} d="M10 88h320"/>`,
+ cal:`<path ${IK} d="M0 52h340M170 52L16 90M170 52L84 90M170 52V90M170 52L256 90M170 52L324 90M0 64h340M0 76h340"/><ellipse cx="146" cy="82" rx="5" ry="9" ${IK}/><ellipse cx="196" cy="70" rx="4.5" ry="8" ${IK}/>`,
+ sab:`<path ${IK} d="M70 12h46M72 16h42v52H72zM70 72h46M80 24v38M92 24v38M104 24v38"/><path ${IK} d="M170 76l56-52M222 24l8 6"/><path ${IK} d="M262 76c12 0 22 4 22 8s-10 6-22 6-22-2-22-6 10-8 22-8z"/><path ${IK} d="M120 84h140"/>`,
  est:`<path d="M170 16a30 30 0 1 0 28 14" stroke="#0e0e10" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="170" cy="46" r="4" fill="#c62a22"/>${[40,90,140,190,240,290].map(x=>`<path ${IK} d="M${x} 82q16-24 32 0M${x+12} 82q4-10 8 0"/>`).join('')}<path ${IK} d="M0 84h340"/>`,
  rel:`<circle cx="60" cy="40" r="14" ${IK}/><circle cx="110" cy="40" r="14" ${IK}/><path d="M110 26a14 14 0 0 0 0 28Z" fill="#0e0e10"/><circle cx="160" cy="40" r="14" fill="#0e0e10"/><circle cx="210" cy="40" r="14" fill="#c62a22"/><circle cx="260" cy="40" r="14" fill="#c62a22"/><path d="M276 28" /><path ${IK} d="M20 74h300M40 62v12M90 62v12M140 62v12M190 62v12M240 62v12M290 62v12"/>`,
- sa:`<path ${IK} d="M170 8v14M150 22h40M146 28c-8 14-8 30 0 44h48c8-14 8-30 0-44zM146 38h48M146 50h48M146 62h48M150 72h40M170 72v10"/>${SUNR(250,40,14)}<path ${IK} d="M20 84h300"/>`};
+ sa:`<path ${IK} d="M170 8v14M150 22h40M146 28c-8 14-8 30 0 44h48c8-14 8-30 0-44zM146 38h48M146 50h48M146 62h48M150 72h40M170 72v10"/><path ${IK} d="M20 84h300"/>`};
 MAST.sp=MAST.est;
 const mast=k=>`<div class="mast"><svg viewBox="0 0 340 90" role="img" aria-label="Ornamento">${MAST[k]||MAST.ini}</svg></div>`;
-const welHtml=()=>{const n=esc(ACC.nome.trim().split(/\s+/)[0]);return`<div class="ov mid"><div class="fc pop wel"><svg viewBox="0 0 340 70" role="img" aria-label="Ornamento"><path ${IK} d="M0 56C40 52 60 24 96 36S150 14 190 32 250 22 340 56M0 64C50 60 90 42 130 50S210 34 260 46 310 44 340 64"/>${SUNR(262,24,15)}</svg><p class="eb" style="margin-top:6px">Shinken Judô · 真剣</p><h1 style="font-size:26px">Boas-vindas, ${n}</h1><p>Shinken (真剣) quer dizer «com seriedade, de verdade». É também o nome da lâmina autêntica, forjada com paciência e cuidado. É nesse espírito que o nosso judô acontece: treino feito com atenção plena, respeito e propósito.</p><p>Aqui o judô é um caminho, o <b>dô</b> (道). Cada aula é uma oportunidade de desenvolver o corpo, a mente, o caráter e o espírito; de aprender a cair, a levantar e a ajudar o parceiro a crescer.</p><p>Nosso compromisso é oferecer um ambiente seguro, acolhedor e respeitoso, onde cada aluno evolui no seu próprio ritmo, guiado pela disciplina, pela perseverança, pela humildade e pelo respeito ao próximo.</p><p>Este aplicativo acompanha a sua jornada, dos treinos ao estudo e à preparação para cada faixa. Use-o com a mesma dedicação com que pisa no tatami.</p><p class="sig"><span>Onegai shimasu,</span><b>Sensei Fernando</b></p><button class="btn" onclick="welOk()">Entrar no dojo</button></div></div>`};
-function welOk(){WEL=false;render()}
 
 /* ===== v10: rastreio, flashcards, vocabulário, cabeçalho, sensei v3 ===== */
 let FC=null,VC=null,VCF='todas',VALL=false;
@@ -1187,7 +1243,19 @@ function nextStep(){const b=Math.min(S.lv,B.length-1),its=B[b][5],i=its.findInde
  if(i>=0){t='Estude a próxima ficha';x=fq(its[i],b);a=`fcOpen(${b},${i})`;l='Abrir a ficha'}
  else{const bs=S.sim.filter(s=>s.b===b);if(!bs.length){t='Faça o simulado da faixa';x='Todas as fichas estão dominadas. Teste o que aprendeu.';a=`WT='prep';PB=${b};go('est');smStart(${b})`;l='Começar o simulado'}else{t='Hora de falar com o sensei';x='Fichas dominadas e simulado feito. Combine a data do exame.';a=`go('cal')`;l='Ver horários de aula'}}
  return`<div class="nxt"><p class="eb">Próximo passo</p><b>${t}</b><p class="sub">${x}</p><button class="lnk" onclick="${a}">${l} →</button></div>`}
-function hdrBar(){if(ACC.sensei)return`<span class="bchip"><b>Painel do sensei</b><small>${CLOUD_URL?(CLDAT?'nuvem conectada':'conectando'):'sem nuvem'}</small></span><button class="lnk" style="margin-left:auto" onclick="logout()">Sair</button>`;const n=B.length,cur=S.lv?B[Math.min(S.lv,n)-1]:null,c=cur?cur[4]:['#e4dccb'],st=stats().st;return`<span class="bchip"><i style="background:linear-gradient(90deg,${c[0]} 50%,${c[c.length-1]} 50%)"></i><b>${cur?cur[0]:'Branca'}</b><small>${cur?cur[1]:'iniciante'}</small></span><span class="hs"><b>${st}</b><small>${st===1?'dia':'dias'} seguidos</small></span><span class="av">${esc(ACC.nome.trim()[0].toUpperCase())}</span>`}
+function hdrBar(){
+    if(ACC.sensei)return`<span class="bchip"><b>Painel do sensei</b><small>${CLOUD_URL?(CLDAT?'nuvem conectada':'conectando'):'sem nuvem'}</small></span><button class="lnk" style="margin-left:auto" onclick="logout()">Sair</button>`;
+    const n=B.length, cur=S.lv ? B[Math.min(S.lv,n)-1] : {0:'Branca',1:'iniciante',4:['#e4dccb']};
+    const c = cur[4] || ['#e4dccb'];
+    const beltName = cur[0] || 'Branca';
+    // Usando um valor fixo de 75% para o exemplo visual, ou pct() para o progresso real
+    const progressPct = pct(); // Ou 75 para o exemplo fixo
+    return `<div class="hprog" style="--b1:${c[0]}; --b2:${c[c.length-1]}">
+                <i style="width:${progressPct}%"></i>
+                <span class="hprog-txt">Faixa ${beltName}</span>
+            </div>
+            <span class="av">${esc(ACC.nome.trim()[0].toUpperCase())}</span>`;
+}
 /* ---- sensei v3 ---- */
 const sims3=st=>{const bs=(st.sim||[]).filter(s=>s.b===Math.min(st.lv||0,B.length-1)).slice(-3);return bs.length?bs.reduce((a,s)=>a+s.s/s.t,0)/bs.length:null};
 function readiness(st,m){const rq=m.own?m.ownDone/m.own:0,sm=sims3(st),pm=passMark(m.lv)/100,sc=sm===null?0:Math.min(1,sm/pm),pr=Math.min(1,m.pres/80),ch=CHP.slice(0,m.lv+1).filter((_,i)=>(m.cs[i]||0)>0).length/(m.lv+1),tot=Math.round(100*(.45*rq+.3*sc+.15*pr+.1*ch));return{tot,parts:[['Requisitos',Math.round(100*rq)],['Simulados',Math.round(100*sc)],['Presença',Math.round(100*pr)],['Estudo',Math.round(100*ch)]],lab:tot>=85?'Pronto para conversar sobre o exame':tot>=60?'Quase lá':tot>=30?'Em preparação':'Início da preparação'}}

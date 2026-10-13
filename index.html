@@ -10,7 +10,6 @@
 :root[data-theme="dark"]{--bg:#10151b;--card:#19202a;--ink:#eceee9;--mut:#93a0ac;--line:#2a3441;--acc:#ff6a5c;--on:#0e1620;--bad:#e0675d}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;padding-bottom:84px}
 main{max-width:560px;margin:0 auto;padding:16px}
 h1,h2,.serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
 h1{font-size:28px;line-height:1.1;margin:6px 0 4px}
@@ -53,7 +52,7 @@ label{font-size:13px;color:var(--mut);display:block;margin:8px 0 4px}
 .t{width:100%;display:flex;justify-content:space-between;align-items:center;padding:10px 0;border:0;border-bottom:1px solid var(--line);background:none;text-align:left}
 .t:last-child{border:0}
 .chip{font-size:12px;padding:2px 10px;border-radius:20px;border:1px solid var(--line);color:var(--mut)}.chip.s2{background:var(--acc);color:var(--on);border-color:var(--acc)}.chip.s1{border-color:var(--bt);color:var(--bt)}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav{position:fixed;left:14px;right:14px;bottom:12px;width:auto;display:flex;background:rgba(14,14,16,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:0;border-radius:28px;padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:40}
 nav button{flex:1;border:0;background:none;padding:13px 4px;font-size:13px;color:var(--mut)}
 nav button.on{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--bt)}
 /* folha A4 */
@@ -84,7 +83,6 @@ h2::before{content:'';display:inline-block;width:10px;height:10px;background:var
 :root{--bg:#fbfaf7;--card:#fbfaf7;--ink:#121212;--mut:#7b7a75;--line:#e7e4dc;--acc:#a8352b;--on:#fff}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0f;--card:#0e0e0f;--ink:#ecebe6;--mut:#8c8b86;--line:#2b2b2c;--acc:#ff5a4d;--on:#0e0e0f}}
 :root[data-theme="dark"]{--bg:#0e0e0f;--card:#0e0e0f;--ink:#ecebe6;--mut:#8c8b86;--line:#2b2b2c;--acc:#ff5a4d;--on:#0e0e0f}
-body{background:var(--bg);background-image:none;font:16px/1.65 'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;padding-bottom:96px}
 main{max-width:520px;padding:26px 22px}
 h1{font:600 30px/1.2 'Shippori Mincho B1','Iowan Old Style',Georgia,serif;text-transform:none;letter-spacing:0;margin:6px 0 10px}
 .eb{font:600 11px/1.2 'Barlow Condensed','Arial Narrow',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);margin:0 0 12px}
@@ -97,7 +95,7 @@ details.card{border-bottom:1px solid var(--line);margin:0;padding:14px 0}summary
 .ghost{border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;padding:6px 0}
 .lnk{background:none;border:0;border-bottom:1px solid var(--ink);padding:2px 0;font-size:14px;color:var(--ink);cursor:pointer}.lnk:disabled{opacity:.3;border-color:transparent}
 .big{font:600 42px/1.05 'Shippori Mincho B1',Georgia,serif;text-transform:none}.big small{font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
-.hero{margin:18px 0 8px}.hero svg{width:100%;height:auto;display:block}
+.hero{margin:18px 0 8px;overflow:hidden}.hero svg{width:100%;height:auto;display:block}
 .chips{display:flex;flex-wrap:wrap;gap:2px 22px;margin:20px 0 12px;border-bottom:1px solid var(--line)}.chips button{background:none;border:0;border-bottom:1.5px solid transparent;padding:8px 0;color:var(--mut);text-align:left;font-size:14px}.chips button small{display:block;font-size:10.5px;opacity:.8}.chips .on{color:var(--ink);border-color:var(--acc)}
 .ck{border-bottom:1px solid var(--line);padding:14px 0;gap:14px}.bx{width:20px;height:20px;border:1.2px solid var(--ink);border-radius:50%;margin-top:2px;position:relative}.on .bx{background:var(--ink);border-color:var(--ink);box-shadow:none}.on .bx::after{content:'';position:absolute;left:6px;top:3px;width:5px;height:9px;border:solid var(--bg);border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
 .rm{padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}.rm.me{font-weight:600}
@@ -172,7 +170,6 @@ details.fi{border-bottom:1px solid var(--line)}details.fi summary{display:flex;g
 :root{--bg:#ffffff;--card:#ffffff;--ink:#0e0e10;--mut:#77777c;--line:#e9e9ec;--acc:#c62a22;--on:#ffffff;--ok:#2f7d4f;--dk:#0e0e10;--dk2:#18181b;--f-d:'Outfit','Shippori Mincho B1',sans-serif;--f-b:'Manrope','Shippori Mincho B1',sans-serif;--f-l:'Outfit',sans-serif}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#ffffff;--card:#ffffff;--ink:#0e0e10;--mut:#77777c;--line:#e9e9ec;--acc:#c62a22;--on:#ffffff;--ok:#2f7d4f}.wm{filter:none!important}}
 :root[data-theme="dark"]{--bg:#ffffff;--card:#ffffff;--ink:#0e0e10;--mut:#77777c;--line:#e9e9ec;--acc:#c62a22;--on:#ffffff}
-html,body{background:#ffffff}body{font:400 15.5px/1.65 var(--f-b);color:var(--ink)}body::before,body::after{display:none!important}
 main{padding:20px 20px 120px}
 h1{font:300 30px/1.12 var(--f-d);text-transform:uppercase;letter-spacing:.03em;margin:8px 0 10px}
 .eb{font:500 10.5px var(--f-l);letter-spacing:.3em;color:var(--acc)}.eb::before{content:'';display:inline-block;width:22px;height:1px;background:var(--acc);vertical-align:middle;margin-right:10px}
@@ -197,7 +194,7 @@ details.card{background:#f5f5f6;border:0;border-radius:18px;padding:16px 18px;ma
 .scn,.pn{padding:0;background:none;border-radius:18px;overflow:hidden;border:1px solid var(--line)}.scn::after,.pn::after{display:none}.scn.duo{background:#c62a22;border:0}.scn.duo img{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.35) brightness(1.2)!important}
 .hk{background:var(--acc);border-radius:14px;transform:none;outline:0;box-shadow:none;font:500 28px 'Shippori Mincho B1',serif}
 .opt{border-radius:16px;border:1px solid var(--line);background:#fff;padding:15px 16px;margin-top:8px;font:400 16px var(--f-b)}.opt.ok{border-color:var(--ok);color:var(--ok);background:#f2f9f4}.opt.no{border-color:var(--acc);color:var(--acc);background:#fdf3f2;text-decoration:none}
-nav{left:14px;right:14px;bottom:12px;width:auto;border:0;border-radius:28px;background:rgba(14,14,16,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 10px 30px rgba(0,0,0,.25)}nav button{color:#8d8d93;padding:10px 2px 9px}nav button.on{color:#fff}nav button.on .kn{color:#ff7a70}nav .kn{color:#c9c9ce}
+nav{left:14px;right:14px;bottom:12px;width:auto;border:0;border-radius:28px;background:rgba(14,14,16,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:40}nav button{color:#8d8d93;padding:10px 2px 9px}nav button.on{color:#fff}nav button.on .kn{color:#ff7a70}nav .kn{color:#c9c9ce}
 #hd{background:#fff;border-bottom:1px solid var(--line);padding:12px 20px}.av{width:34px;height:34px;border-radius:50%;background:var(--dk);color:#fff;display:grid;place-items:center;font:500 13px var(--f-l);margin-left:auto}
 input,select,textarea{background:#f5f5f6;border:0;border-radius:14px;padding:13px 16px}label{font:500 10.5px var(--f-l);letter-spacing:.22em;color:var(--mut)}
 .pop,.fc{border-radius:24px}.fc{border:0}.pop{border:0}.pg button{border-radius:999px;border-color:var(--line)}.pg button.on{background:var(--dk);color:#fff}
@@ -230,6 +227,11 @@ input,select,textarea{background:#fff;border:1px solid var(--line);border-radius
 #hd{display:flex;align-items:center;gap:14px;padding:12px 20px}
 .bchip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px}.bchip i{width:26px;height:9px;border:1.2px solid var(--ink);border-radius:2px;display:block}.bchip b{font:500 14px var(--f-d)}.bchip small{font:400 12px var(--f-b);color:var(--mut)}
 .hs{margin-left:auto;display:flex;align-items:baseline;gap:6px}.hs b{font:200 26px var(--f-d)}.hs small{font:400 11px var(--f-b);color:var(--mut)}.hs+.av{margin-left:0}
+.pbbar{flex:1;min-width:0}
+.pbpill{position:relative;height:34px;border-radius:999px;background:#f1efe9;border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pbpill i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--g1),var(--g2));transition:width .45s ease;border-radius:999px}
+.pbpill b{position:relative;z-index:1;font:600 13px var(--f-d);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.25);letter-spacing:.02em}
+.pbpill b.dark{color:var(--ink);text-shadow:none}
 .nxt{border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin:20px 0 6px}.nxt b{display:block;font:300 22px/1.2 var(--f-d);text-transform:uppercase;letter-spacing:.02em;margin:4px 0 6px}.nxt .sub{margin:0 0 8px}
 .ck{align-items:flex-start}.ck .bx{background:none;padding:0;flex:none}.ck .ct{background:none;border:0;text-align:left;font:inherit;color:inherit;flex:1;padding:0;cursor:pointer}.ck .ct small{display:block;color:var(--acc);font:500 10.5px var(--f-l);letter-spacing:.16em;text-transform:uppercase;margin-top:3px}.ck.on .ct{color:var(--mut)}
 .mc{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:#f5f5f6;border:0;border-radius:16px;padding:14px 16px;margin-bottom:8px;font:400 15px/1.45 var(--f-b);color:var(--ink);cursor:pointer}.mc .bx{margin-top:2px;flex:none}.mc.ok{background:#fff;border:1px solid var(--line);color:var(--mut)}
@@ -299,21 +301,6 @@ function elig(){const t=tgt();if(!t)return'';const a=age(),o=[];
 function nav(){document.getElementById('nav').innerHTML=TABS.map(t=>`<button class="${tab===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')}
 function go(t){tab=t;if(t==='est')Q=null;conf=false;render();window.scrollTo(0,0)}
 
-function ini(){const t=tgt(),c=cols(),n=reqs().length;
-  const cur=S.lv?B[S.lv-1][0]+' ('+B[S.lv-1][1]+')':'Branca';
-  let h=`<div class="row"><h1>Jornada do Judoca</h1><img src="${LOGO}" width="60" height="60" alt="Shinken Judô"></div><p class="sub">Faixa atual: ${cur}. Federação: São Paulo (FPJ).</p>`;
-  if(!t)return h+`<div class="card"><b class="serif">Você chegou à faixa marrom.</b><p class="sub">O próximo passo é a faixa preta (Shodan). Esse módulo entra na próxima versão.</p><button class="ghost" onclick="back()">Voltar uma faixa</button></div>`;
-  h+=`<div class="card"><div class="sub" style="margin:0">Próxima faixa</div><div class="big">${t[0]}</div><div class="sub" style="margin:2px 0 0">${t[1]} · idade mínima ${t[2]} anos · carência ${t[3]} meses</div>
-  <div class="obi" style="--b1:${c[0]};--b2:${c[1]}"><i style="width:${pct()}%"></i><b></b></div><div class="row sub" style="margin:0"><span>${rdone()} de ${n} requisitos</span><span>${pct()}%</span></div></div>
-  <div class="card"><b class="serif">Posso fazer o exame?</b>${elig()}
-  <label>Data de nascimento</label><input type="date" value="${S.birth}" onchange="S.birth=this.value;save();render()">
-  <label>Na faixa atual desde</label><input type="date" value="${S.since}" onchange="S.since=this.value;save();render()"></div>
-  <h2>Requisitos</h2><div class="card" style="padding:4px 14px">`+reqs().map((r,i)=>{const f=i>=t[5].length,k=S.lv+'-'+i;return`<button class="ck ${S.req[k]?'on':''}" onclick="tg('${k}')"><span class="bx"></span><span>${r}${f?'<span class="tag">CBJ</span>':''}</span></button>`}).join('')+`</div>
-  <p class="sub">O exame cobra também o conteúdo das faixas anteriores (CBJ 2021, art. 6º: modo cumulativo). ${S.lv<7?'O exame é feito no seu dojo, sob um professor faixa preta, e a FPJ homologa a faixa.':'Vocabulário, histórico e princípios podem ser sugeridos pela Comissão Estadual de Graduação da FPJ.'}</p>
-  <button class="btn" onclick="adv()">${conf?'Confirmar: passei para a '+t[0]:'Concluí esta faixa'}</button>
-  <h2>Caminho até a marrom</h2><div class="card" style="padding:4px 14px"><div class="rm ${S.lv===0?'me':''}"><span class="dot" style="background:#e4e4de"></span>Branca (iniciante)</div>`+B.map((b,i)=>`<div class="rm ${i===S.lv?'me':''}" style="${i<S.lv?'color:var(--mut)':''}"><span class="dot" style="background:linear-gradient(90deg,${b[4][0]},${b[4][b[4].length-1]})"></span><span style="flex:1">${b[0]}</span><span>${b[1]}</span></div>`).join('')+`</div>
-  <p class="sub">Fonte: CBJ, Regulamento para Exame e Outorga de Faixas e Graus (2021). Confirme com a FPJ o edital do exame e se há versão mais recente.</p>`;
-  return h}
 function tg(k){S.req[k]=!S.req[k];save();const y=scrollY;render();scrollTo(0,y)}
 function adv(){if(!conf){conf=true;return render()}conf=false;S.lv++;S.since=iso(new Date());logEv('faixa','Conquistou a faixa '+(B[S.lv-1]?B[S.lv-1][0]:''));save();render();scrollTo(0,0)}
 function back(){S.lv=Math.max(0,S.lv-1);save();render()}
@@ -426,9 +413,7 @@ function mine(){return S.mine.map((m,i)=>`<div class="row"><button class="ck ${m
 function tm(i){S.mine[i].d=!S.mine[i].d;save();O.m=true;render()}
 function dm(i){S.mine.splice(i,1);save();O.m=true;render()}
 function am(){const v=document.getElementById('mi').value.trim();if(!v)return;S.mine.push({t:v,d:false});save();O.m=true;render()}
-function sab(){const p=(a,b)=>`<p style="margin:6px 0"><b>${a}</b> ${b}</p>`;
- return`<h1>Saber</h1><p class="sub">História, ideais, vocabulário e etiqueta. O exame da CBJ cobra tudo isso, não só os golpes.</p>`+D('h','História do judô',HQ.map(x=>p(x[0],x[1])).join(''))+D('i','Princípios e ideais',IQ.map(x=>`<p style="margin:6px 0">${x[0].replace('…','<b>'+x[1]+'</b>')}</p>`).join(''))+D('v','Vocabulário ('+CARDS.length+' termos)',[...CARDS].sort((a,b)=>a[0].localeCompare(b[0])).map(x=>p(x[0],'· '+x[1])).join(''))+D('e','Etiqueta do dojo',ETQ.map(x=>`<p style="margin:6px 0">${x}</p>`).join('')+'<p class="sub">Boas práticas gerais. Seu sensei e seu dojô podem ter regras próprias.</p>')+D('m','Minha lista para o exame',mine())}
-function render(){theme();nav();document.getElementById('hd').innerHTML='<img src="'+WORD+'" alt="Shinken Judô"><span>道 Michi</span>';document.getElementById('app').innerHTML={ini,cal,est,sab,rel}[tab]();let o=document.getElementById('ov');if(!o){o=document.createElement('div');o.id='ov';document.body.appendChild(o)}o.innerHTML=F?ficha():''}
+
 const ST=['Não vi','Estudando','Dominei'];
 const TQ=[['Qual é a ordem correta de uma projeção?','Kuzushi, tsukuri e kake.'],['O que é tsukuri?','Posicionar o corpo na melhor posição, mantendo o desequilíbrio.'],['Quantas direções tem o happo-no-kuzushi?','Oito.'],['Onde fica o centro de gravidade do corpo, segundo o manual?','No baixo-ventre.'],['Por que se encolhe o queixo no ukemi para trás?','Para a nuca não bater no chão.'],['Como se começa a ensinar o ukemi?','Individual, em postura baixa, parado e fácil.'],['Em que ordem se aprende o katame-waza?','Imobilizações, estrangulamentos e chaves.'],['De que pensamento vem o conceito de rei?','Do confucionismo.'],['Qual é a inclinação aproximada do ritsurei?','Cerca de 30 graus.'],['Em quais escolas Kano treinou jujutsu?','Tenjin Shin\'yô-ryû e Kitô-ryû.'],['Qual é o objetivo final da prática do judô, segundo Kano?','Aperfeiçoar-se e contribuir com a sociedade.'],['No exemplo de Kano, por que ceder à força maior economiza energia?','O oponente se desequilibra e perde força útil.'],['Quantas técnicas tem o Nage no Kata?','15, três de cada tipo.'],['Quais são as três formas de prática do judô?','Randori, kata e shiai.'],['Quem pode conduzir o exame das faixas coloridas?','Professor faixa preta maior de 18 anos, regular na CBJ.']];
 const TH=[
@@ -961,9 +946,6 @@ function mapHtml(gi){const g=GR[gi],row=(i,name,sub,cols,state)=>`<button class=
 /* ---- Keiko ---- */
 const SCH={1:[['Noite','20h às 21h']],2:[['Manhã','10h às 11h']],3:[['Noite','20h às 21h']],4:[['Manhã','10h às 11h']],5:[['Noite','19h30 às 20h30']],6:[['Tarde','14h às 16h']],0:[['Tarde','15h às 16h30']]};
 const DSEM=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-function cal(){const s=stats(iso(view).slice(0,7)),y=view.getFullYear(),mo=view.getMonth(),f=new Date(y,mo,1).getDay(),n=new Date(y,mo+1,0).getDate(),td=iso(new Date());
- let c=['D','S','T','Q','Q','S','S'].map(x=>`<div class="h">${x}</div>`).join('')+'<span></span>'.repeat(f);for(let d=1;d<=n;d++){const k=iso(new Date(y,mo,d));c+=`<button class="d ${S.days[k]||''} ${k===td?'now':''}" onclick="dp('${k}')">${d}</button>`}
- return`<p class="eb">Keiko · 稽古 · treino</p><h1>Treinos</h1><p class="sub">Toque em um dia para ver as aulas e registrar a sua presença.</p><div class="stats"><div class="stat"><b>${s.T}</b><span>treinos no mês</span></div><div class="stat"><b>${s.p}%</b><span>presença</span></div><div class="stat"><b>${stats().st}</b><span>dias seguidos · melhor ${stats().best}</span></div></div><div class="row" style="margin-bottom:8px"><button class="lnk" onclick="mv(-1)">‹</button><b class="mes">${view.toLocaleDateString('pt-BR',{month:'long',year:'numeric'})}</b><button class="lnk" onclick="mv(1)">›</button></div><div class="cal">${c}</div><p class="sub" style="margin-top:12px">Preenchido: treinou · anel: faltou · tracejado: descanso.</p><h2>Horários das aulas</h2><p class="sub">Adolescentes e adultos (a partir de 13 anos)</p><div class="hor">`+[1,2,3,4,5,6,0].map(d=>`<div class="rm"><span style="flex:1">${DSEM[d]}</span><span>${SCH[d][0][1]}</span><span class="sub" style="margin:0;min-width:48px;text-align:right">${SCH[d][0][0]}</span></div>`).join('')+`</div><h2>Diário de treino</h2><textarea id="nt" placeholder="O que treinou? O que o sensei corrigiu?"></textarea><button class="btn" onclick="an()">Salvar anotação</button>`+[...S.notes].reverse().slice(0,6).map(x=>`<p style="margin:14px 0 0"><span class="sub">${x.d}</span><br>${esc(x.x)}</p>`).join('')}
 function dp(k){PD=k;render()}
 function setDay(k,v){if(v)S.days[k]=v;else delete S.days[k];if(v==='T')logEv('treino','Registrou treino em '+br(k));if(v==='F')logEv('falta','Registrou falta em '+br(k));save();PD=null;render()}
 function dayPopup(){const d=new Date(PD+'T00:00'),sc=SCH[d.getDay()]||[],v=S.days[PD]||'';return`<div class="ov mid" onclick="if(event.target===this){PD=null;render()}"><div class="fc pop"><p class="eb">${DSEM[d.getDay()]} · ${d.toLocaleDateString('pt-BR',{day:'numeric',month:'long'})}</p><h2 style="margin:0 0 6px">Aulas neste dia</h2>`+(sc.length?sc.map(s=>`<p style="margin:2px 0"><b>${s[1]}</b> · ${s[0]}</p>`).join('')+`<p class="sub">Turma de adolescentes e adultos (a partir de 13 anos).</p>`:`<p class="sub">Sem aula neste dia.</p>`)+`<div class="pg"><button class="${v==='T'?'on':''}" onclick="setDay('${PD}','T')">Treinou</button><button class="${v==='F'?'on':''}" onclick="setDay('${PD}','F')">Faltou</button><button class="${v==='R'?'on':''}" onclick="setDay('${PD}','R')">Descanso</button></div><p style="text-align:center;margin:12px 0 0"><button class="lnk" onclick="setDay('${PD}','')">Limpar</button> &nbsp; <button class="lnk" onclick="PD=null;render()">Fechar</button></p></div></div>`}
@@ -1188,7 +1170,7 @@ function nextStep(){const b=Math.min(S.lv,B.length-1),its=B[b][5],i=its.findInde
  if(i>=0){t='Estude a próxima ficha';x=fq(its[i],b);a=`fcOpen(${b},${i})`;l='Abrir a ficha'}
  else{const bs=S.sim.filter(s=>s.b===b);if(!bs.length){t='Faça o simulado da faixa';x='Todas as fichas estão dominadas. Teste o que aprendeu.';a=`WT='prep';PB=${b};go('est');smStart(${b})`;l='Começar o simulado'}else{t='Hora de falar com o sensei';x='Fichas dominadas e simulado feito. Combine a data do exame.';a=`go('cal')`;l='Ver horários de aula'}}
  return`<div class="nxt"><p class="eb">Próximo passo</p><b>${t}</b><p class="sub">${x}</p><button class="lnk" onclick="${a}">${l} →</button></div>`}
-function hdrBar(){if(ACC.sensei)return`<span class="bchip"><b>Painel do sensei</b><small>${CLOUD_URL?(CLDAT?'nuvem conectada':'conectando'):'sem nuvem'}</small></span><button class="lnk" style="margin-left:auto" onclick="logout()">Sair</button>`;const n=B.length,cur=S.lv?B[Math.min(S.lv,n)-1]:null,c=cur?cur[4]:['#e4dccb'],nome=cur?cur[0]:'Branca',p=pct();return`<div class="pbbar" style="--g1:${c[0]};--g2:${c[c.length-1]}"><div class="pbrow"><b>Faixa ${nome}</b><small>${p}%</small></div><div class="pbtrack"><i style="width:${p}%"></i></div></div><span class="av">${esc(ACC.nome.trim()[0].toUpperCase())}</span>`}
+function hdrBar(){if(ACC.sensei)return`<span class="bchip"><b>Painel do sensei</b><small>${CLOUD_URL?(CLDAT?'nuvem conectada':'conectando'):'sem nuvem'}</small></span><button class="lnk" style="margin-left:auto" onclick="logout()">Sair</button>`;const n=B.length,cur=S.lv?B[Math.min(S.lv,n)-1]:null,c=cur?cur[4]:['#e4dccb'],nome=cur?cur[0]:'Branca',p=pct();return`<div class="pbbar"><div class="pbpill" style="--g1:${c[0]};--g2:${c[c.length-1]}"><i style="width:${p}%"></i><b class="${p<25?'dark':''}">${nome} · ${p}%</b></div></div><span class="av">${esc(ACC.nome.trim()[0].toUpperCase())}</span>`}
 /* ---- sensei v3 ---- */
 const sims3=st=>{const bs=(st.sim||[]).filter(s=>s.b===Math.min(st.lv||0,B.length-1)).slice(-3);return bs.length?bs.reduce((a,s)=>a+s.s/s.t,0)/bs.length:null};
 function readiness(st,m){const rq=m.own?m.ownDone/m.own:0,sm=sims3(st),pm=passMark(m.lv)/100,sc=sm===null?0:Math.min(1,sm/pm),pr=Math.min(1,m.pres/80),ch=CHP.slice(0,m.lv+1).filter((_,i)=>(m.cs[i]||0)>0).length/(m.lv+1),tot=Math.round(100*(.45*rq+.3*sc+.15*pr+.1*ch));return{tot,parts:[['Requisitos',Math.round(100*rq)],['Simulados',Math.round(100*sc)],['Presença',Math.round(100*pr)],['Estudo',Math.round(100*ch)]],lab:tot>=85?'Pronto para conversar sobre o exame':tot>=60?'Quase lá':tot>=30?'Em preparação':'Início da preparação'}}

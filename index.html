@@ -716,7 +716,7 @@ function ini(){const n=B.length;if(VB===null||VB>=n)VB=Math.min(S.lv,n-1);
  let acc=0,accT=0;for(let b=0;b<VB;b++){acc+=done(b);accT+=items(b).length}
  const cur=S.lv?B[Math.min(S.lv,n)-1][0]+' · '+B[Math.min(S.lv,n)-1][1]:'Branca',c=t[4],tag=mine?'Próxima faixa':VB<S.lv?'Faixa conquistada · revisão':'Faixa à frente · pré-visualização';
  const ck=(b,r,i)=>{const k=b+'-'+i;return`<div class="ck ${S.req[k]?'on':''}"><button class="bx" aria-label="Marcar como concluído" onclick="tg('${k}')"></button><button class="ct" onclick="fcOpen(${b},${i})">${r}<small>Estudar a ficha</small></button></div>`};
- let h=`<p class="eb">Michi · 道 · o caminho</p><div class="hrow"><img class="hlogo" src="${LOGO}" alt="Shinken Judô"><h1>Rumo à<br>${t[0]}</h1></div><p class="sub">Shu · Ha · Ri: aprender, adaptar, transcender.</p>`;
+ let h=`<p class="eb">Michi · 道 · o caminho</p><div class="hrow"><h1>Rumo à<br>${t[0]}</h1><img class="hlogo" src="${LOGO}" alt="Shinken Judô"></div><p class="sub">Shu · Ha · Ri: aprender, adaptar, transcender.</p>`;
  h+=`<div class="chips">`+GR.map((g,i)=>`<button class="${i===gi?'on':''}" onclick="gf(${i})">${g.n}<small>${g.s}</small></button>`).join('')+`</div>`;
  h+=`<div class="row" style="margin:6px 0 4px"><button class="lnk" ${VB===0?'disabled':''} onclick="vb(-1)">‹ Visitar faixa anterior</button><button class="lnk" ${VB>=n-1?'disabled':''} onclick="vb(1)">Faixa seguinte ›</button></div>`;
  if(VB!==Math.min(S.lv,n-1))h+=`<button class="lnk" style="margin:4px 0 0" onclick="VB=null;render()">↺ Voltar à minha faixa</button>`;
